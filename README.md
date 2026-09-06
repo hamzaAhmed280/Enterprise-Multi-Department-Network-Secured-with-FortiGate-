@@ -149,3 +149,122 @@ Public access is limited to required services.
 Example:
 
 ```text
+
+Internet → Web Server → HTTP/HTTPS → ALLOW
+
+Internet → Internal Networks → DENY
+Internal → DMZ
+
+Internal users may access specific services hosted in the DMZ when required.
+
+Examples:
+
+Internal VLANs → DNS Server → DNS → ALLOW
+Internal VLANs → Web Server → HTTPS → ALLOW
+Internal VLANs → DMZ → Other Services → DENY
+DMZ → Internal Networks
+
+Traffic initiated from DMZ servers toward internal networks is denied by default to reduce the potential impact of a compromised public-facing server.
+
+NAT
+Source NAT
+
+Source NAT is used for private internal networks accessing the Internet.
+
+Finance → Internet → Source NAT
+AI      → Internet → Source NAT
+IT      → Internet → Source NAT
+Sales   → Internet → Source NAT
+DMZ     → Internet → Source NAT
+Destination NAT
+
+Destination NAT can be used to publish the Web Server to external users.
+
+Internet
+   ↓
+Public Web IP
+   ↓
+192.168.50.10
+   ↓
+Web Server
+
+Only the required public service should be exposed.
+
+Security Objectives
+
+The main security objectives of the project are:
+
+Separate departments using VLANs.
+Control traffic between internal networks.
+Provide controlled Internet access.
+Protect internal networks from unauthorized inbound traffic.
+Isolate public-facing services inside the DMZ.
+Restrict unnecessary inter-VLAN communication.
+Protect Web and DNS servers.
+Apply NAT for Internet-bound traffic.
+Follow the principle of least privilege.
+Reduce unnecessary lateral movement.
+Technologies Used
+FortiGate NGFW
+EVE-NG
+Cisco Switches
+VLANs
+IPv4
+NAT
+Routing
+Firewall Security Policies
+Testing
+
+The network security design can be validated through:
+
+Inter-VLAN connectivity testing
+Internet connectivity testing
+Firewall policy verification
+NAT verification
+DMZ access testing
+Unauthorized traffic testing
+Web Server access testing
+DNS service testing
+
+The expected result is that authorized traffic is allowed while unauthorized communication is blocked according to the defined security policies.
+
+Project Documentation
+
+Detailed firewall security policies, VLAN addressing, security zones, NAT policies, and access-control rules are documented in:
+
+FortiGate Firewall Security Documentation
+
+Security Recommendations
+
+Future improvements can include:
+
+Centralized logging and monitoring
+Regular firewall rule reviews
+Configuration backups
+Restricted administrative access
+Advanced security monitoring
+Additional security controls such as IPS/IDS where required
+Learning Outcomes
+
+Through this project, I developed practical understanding of:
+
+Enterprise network segmentation
+FortiGate firewall architecture
+Firewall security policy design
+VLAN-based security
+DMZ architecture
+NAT concepts
+Inter-VLAN access control
+Network security principles
+Least-privilege security design
+Author
+
+Hamza Ahmed
+
+Network Security Student
+
+References
+Fortinet FortiGate Administration Guide
+Fortinet FortiGate Firewall Policy Documentation
+Fortinet FortiGate NAT and Virtual IP Documentation
+Fortinet Security Best Practices
