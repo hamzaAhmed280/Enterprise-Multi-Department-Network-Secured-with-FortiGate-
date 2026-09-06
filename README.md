@@ -149,4 +149,3 @@ Public access is limited to required services.
 Example:
 
 ```text
-Internet → Web Server → HTTP/HTTPS → ALLOW
